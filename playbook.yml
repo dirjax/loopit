@@ -1,0 +1,23 @@
+---
+
+- hosts: all
+  pre_tasks:
+    - include_role:
+        name: ferm
+        tasks_from: combine.yml
+      when: inventory_hostname in groups[groupname]|default([])
+      with_items:
+        - dns
+        - jumphost
+        - mariadb
+        - nfs
+        - tomcat
+        - webserver
+        - not_needed
+        - unexisting
+      loop_control:
+        loop_var: groupname
+
+  roles:
+    - role: ferm
+
