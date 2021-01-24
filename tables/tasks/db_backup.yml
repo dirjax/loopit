@@ -2,6 +2,7 @@
 
 - debug:
     var: hostvars[dbserver].databases
+    verbosity: 2
   with_items: "{{ play_hosts }}"
   loop_control:
     loop_var: dbserver
@@ -17,6 +18,7 @@
 
 - debug:
     var: all_db|unique
+    verbosity: 2
 
 
 - debug:

@@ -6,5 +6,7 @@ databases:
     master: play-03
   - name: db-three
     master: play-01
+  - name: db-four
+    master: play-01
 
 ...

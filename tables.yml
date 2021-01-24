@@ -8,8 +8,9 @@
         tasks_from: db_backup.yml
       run_once: yes
 
-    # - name: who needs to receive that dump
-    #   debug:
-    #     delegate to master
-    #     item = database name
-    #     send to play host
+    - name: who needs to receive that dump
+      debug:
+        msg: "{{ item.master }} sending {{ item.name }} to {{ inventory_hostname }}"
+      with_items: "{{ hostvars[inventory_hostname].databases }}"
+      when: item.master is defined
+      delegate_to: "{{ item.master }}"
