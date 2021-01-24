@@ -1,0 +1,10 @@
+---
+
+databases:
+  - name: db-one
+    master: play-02
+  - name: db-two
+    master: play-03
+  - name: db-three
+
+...

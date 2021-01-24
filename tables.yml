@@ -1,0 +1,15 @@
+---
+
+- hosts: vagrant
+  tasks:
+    - name: prepare db_backup
+      include_role:
+        name: tables
+        tasks_from: db_backup.yml
+      run_once: yes
+
+    # - name: who needs to receive that dump
+    #   debug:
+    #     delegate to master
+    #     item = database name
+    #     send to play host

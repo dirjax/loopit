@@ -1,0 +1,3 @@
+---
+
+- debug: msg="adding {{groupname}} loopit rules"

@@ -3,7 +3,7 @@
 - hosts: all
   pre_tasks:
     - include_role:
-        name: ferm
+        name: loopit
         tasks_from: combine.yml
       when: inventory_hostname in groups[groupname]|default([])
       with_items:
@@ -19,5 +19,5 @@
         loop_var: groupname
 
   roles:
-    - role: ferm
+    - role: loopit
 

@@ -1,0 +1,25 @@
+---
+
+- debug:
+    var: hostvars[dbserver].databases
+  with_items: "{{ play_hosts }}"
+  loop_control:
+    loop_var: dbserver
+
+
+- name: combine them
+  set_fact:
+    all_db: "{{ all_db|d([]) + hostvars[dbserver].databases }}"
+  with_items: "{{ play_hosts }}"
+  loop_control:
+    loop_var: dbserver
+
+
+- debug:
+    var: all_db|unique
+
+
+- debug:
+    msg: "going to {{ item.master }} for backing up {{ item.name }}"
+  with_items: "{{ all_db|unique }}"
+  when: item.master is defined
